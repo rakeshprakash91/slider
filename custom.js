@@ -10,8 +10,10 @@ var i = 1,
 	var prevBtn = document.createElement('button'),
 		nextBtn = document.createElement('button');
 	prevBtn.innerHTML = "Prev";
+	prevBtn.setAttribute('class', 'prev');
 	sliderNav.appendChild(prevBtn);
 	nextBtn.innerHTML = "Next";
+	nextBtn.setAttribute('class', 'next');
 	sliderNav.appendChild(nextBtn);
 	prevBtn.addEventListener('click', updateSlider);
 	nextBtn.addEventListener('click', updateSlider);
@@ -21,17 +23,30 @@ var i = 1,
 //slider properties
 function slide() {
 	setTimeout(function () {
+		if (i == 0) {
+			document.querySelectorAll('.prev')[0].style.pointerEvents = "none";
+			document.querySelectorAll('.prev')[0].style.opacity = "0.5";
+		}
+		slider[currIndex].style.display = "none"; //previous
 		prevElm = slider[currIndex];
-		slider[currIndex].style.display = "none";
-		slider[i].style.display = "block";
-		currIndex = i;
+		slider[i].style.display = "block"; // current
 		currElm = slider[i];
-		i++;
+		if (i != 0) {
+			document.querySelectorAll('.prev')[0].style.pointerEvents = "all";
+			document.querySelectorAll('.prev')[0].style.opacity = "1";
+		}
+		currIndex = i;
+		i++; //next
 		nextElm = slider[i];
 		if (i == slider.length) {
 			i = 0;
-			currIndex = slider.length - 1;
+			document.querySelectorAll('.next')[0].style.pointerEvents = "none";
+			document.querySelectorAll('.next')[0].style.opacity = "0.5";
+		} else {
+			document.querySelectorAll('.next')[0].style.pointerEvents = "all";
+			document.querySelectorAll('.next')[0].style.opacity = "1";
 		}
+
 		slide();
 	}, 3000);
 }
@@ -42,7 +57,6 @@ function l() {
 
 function updateSlider() {
 	var elm = this;
-	l(currElm)
 	if (elm.innerHTML == "Prev") {
 		currElm.style.display = "none";
 		prevElm.style.display = "block";
