@@ -1,0 +1,41 @@
+.slider {
+	width: 100%;
+	height: 450px;
+}
+
+.slider div {
+	width: 100%;
+	height: 440px;
+	display: none;
+}
+
+.slider div:first-child {
+	display: block;
+}
+
+div img {
+	width: 100%;
+	height: 440px;
+}
+
+.sliderNav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	top: -40px
+}
+
+.sliderNav button {
+	margin: 0 10px;
+	padding: 5px 10px;
+	border: none;
+	background-color: #0069ff;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+}
