@@ -57,11 +57,15 @@ function l() {
 
 function updateSlider() {
 	var elm = this;
-	if (elm.innerHTML == "Prev") {
-		currElm.style.display = "none";
-		prevElm.style.display = "block";
-	} else {
-		currElm.style.display = "none";
-		nextElm.style.display = "block";
-	}
+	/*if (elm.innerHTML == "Prev") {
+	--i;
+	currIndex = i;
+	currElm.style.display = "none";
+	prevElm.style.display = "block";
+} else {
+	currIndex = i;
+	++i;
+	currElm.style.display = "none";
+	nextElm.style.display = "block";
+}*/
 }
