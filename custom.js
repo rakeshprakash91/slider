@@ -17,7 +17,11 @@ var i = 1,
 	sliderNav.appendChild(nextBtn);
 	prevBtn.addEventListener('click', updateSlider);
 	nextBtn.addEventListener('click', updateSlider);
-	slide()
+
+	//for the next btn click for 1st image on pageload
+	currElm = slider[0];
+	nextElm = slider[1];
+	slide();
 })();
 
 //slider properties
@@ -57,15 +61,23 @@ function l() {
 
 function updateSlider() {
 	var elm = this;
-	/*if (elm.innerHTML == "Prev") {
-	--i;
-	currIndex = i;
-	currElm.style.display = "none";
-	prevElm.style.display = "block";
-} else {
-	currIndex = i;
-	++i;
-	currElm.style.display = "none";
-	nextElm.style.display = "block";
-}*/
+	if (elm.innerHTML == "Prev") {
+		--i;
+		currIndex = i - 1;
+		currElm.style.display = "none";
+		prevElm.style.display = "block";
+		nextElm = currElm;
+		currElm = prevElm;
+	} else {
+		if (currIndex == 0) {
+			document.querySelectorAll('.prev')[0].style.pointerEvents = "all";
+			document.querySelectorAll('.prev')[0].style.opacity = "1";
+		}
+		++currIndex;
+		++i;
+		currElm.style.display = "none";
+		nextElm.style.display = "block";
+		prevElm = currElm;
+		currElm = nextElm;
+	}
 }
